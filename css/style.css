@@ -404,7 +404,8 @@ a:hover {
   bottom: 0;
   z-index: 9999;
   overflow: hidden;
-  background: #fff;
+  background: lightseagreen;
+  opacity: 0.9;
 }
 
 #preloader:before {
@@ -415,8 +416,8 @@ a:hover {
   border: 6px solid #f2f2f2;
   border-top: 6px solid #0078ff;
   border-radius: 50%;
-  width: 60px;
-  height: 60px;
+  width: 100px;
+  height: 100px;
   -webkit-animation: animate-preloader 1s linear infinite;
   animation: animate-preloader 1s linear infinite;
 }

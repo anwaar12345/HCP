@@ -49,10 +49,10 @@
             <a class="nav-link js-scroll" href="#contact">Contact US</a>
           </li>
           <li class="nav-item">
-              <a class="nav-link js-scroll" href="#" onclick="signin()">Signin</a>
+              <a class="nav-link js-scroll" href="signin.php">Signin</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll" href="#" onclick="signup()">SignUP</a>
+            <a class="nav-link js-scroll" href="signup.php">SignUP</a>
           </li>
         </ul>
       </div>
@@ -602,36 +602,6 @@
     </footer>
   </section>
   <!--/ Section Contact-footer End /-->
-  <div class="form-popup" id="myForm">
-      <form action="/action_page.php" class="form-container">
-        <h1>Login</h1>
-    
-        <label for="email"><b>Email</b></label>
-        <input type="text" placeholder="Enter Email" name="email" required>
-    
-        <label for="psw"><b>Password</b></label>
-        <input type="password" placeholder="Enter Password" name="psw" required>
-    
-        <button type="submit" class="btn">Login</button>
-        <button type="button" class="btn cancel" onclick="closeForm()">Close</button>
-      </form>
-    </div>
-    <div class="form-popup" id="myFormsu">
-        <form action="/action_page.php" class="form-container">
-          <h1>Login</h1>
-      
-          <label for="email"><b>Email</b></label>
-          <input type="text" placeholder="Enter Email" name="email" required>
-      
-          <label for="psw"><b>Password</b></label>
-          <input type="password" placeholder="Enter Password" name="psw" required>
-          <label for="psw"><b>Confirm Password</b></label>
-          <input type="password" placeholder="Enter Password again" name="cpsw" required>
-      
-          <button type="submit" class="btn">Login</button>
-          <button type="button" class="btn cancel" onclick="closeFormsu()">Close</button>
-        </form>
-      </div>
   <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
   <div id="preloader"></div>
 
@@ -651,21 +621,7 @@
 
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
-  <script>
-      function signin() {
-        document.getElementById("myForm").style.display = "block";
-      }
-      function signup() {
-        document.getElementById("myFormsu").style.display = "block";
-      }
 
-      function closeForm() {
-  document.getElementById("myForm").style.display = "none";
-}
 
-function closeFormsu() {
-  document.getElementById("myFormsu").style.display = "none";
-}
-      </script>
 </body>
 </html>
