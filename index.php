@@ -1,3 +1,11 @@
+<?php 
+//include('db.php');
+error_reporting(0);
+session_start();
+if($_SESSION['name']!=""){
+   //header("location:signin.php");
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,7 +30,42 @@
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
 
-  
+  <style>
+  .dropbtn {
+  background-color: lightseagreen;
+  color: white;
+  padding: 13px;
+  font-size: 16px;
+  border: none;
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: lightseagreen;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 12px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {background-color: #ddd;}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: #3e8e41;}
+  </style>
 </head>
 
 <body id="page-top">
@@ -52,7 +95,15 @@
               <a class="nav-link js-scroll" href="signin.php">Signin</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link js-scroll" href="signup.php">SignUP</a>
+            <div class="dropdown">
+              <button class="dropbtn">
+                Registere here
+              </button>
+              <div class="dropdown-content">
+                <a href="signup.php">SignUP As User</a>
+                <a href="signupd.php">SignUP As Doctor</a>
+              </div>
+            </div>
           </li>
         </ul>
       </div>

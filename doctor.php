@@ -28,7 +28,7 @@
   <!--/ Nav Star /-->
   <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
       <div class="container">
-        <a class="navbar-brand js-scroll" href="index.html"><img src="img/final.png" style="height: 40px; width: 100px; border-radius: 5px;"></a>
+        <a class="navbar-brand js-scroll" href="index.php"><img src="img/final.png" style="height: 40px; width: 100px; border-radius: 5px;"></a>
         <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
           aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
           <span></span>
