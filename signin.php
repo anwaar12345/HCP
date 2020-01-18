@@ -6,17 +6,17 @@ session_start();
 if(isset($_COOKIE['name']) && $_COOKIE['role']==2){
 $_SESSION['name'] = $_COOKIE['name'];
 $_SESSION['role'] = $_COOKIE['role'];
-echo "<script>alert('welcome $_SESSION[name] with cookie back role is $_COOKIE[role] user');window.location.href='index.php'</script>";
+echo "<script>alert('welcome $_SESSION[name] with cookie back role is $_COOKIE[role] user');window.location.href='user/userdashboard.php'</script>";
 }elseif(isset($_COOKIE['name']) && $_COOKIE['role']==1){
 //remember check admin
     $_SESSION['name'] = $_COOKIE['name'];
     $_SESSION['role'] = $_COOKIE['role'];
-    echo "<script>alert('welcome $_SESSION[name] with cookie back role is $_COOKIE[role] admin');window.location.href='index.php'</script>";
+    echo "<script>alert('welcome $_SESSION[name] with cookie back role is $_COOKIE[role] admin');window.location.href='admin/admindashboard.php'</script>";
     }elseif(isset($_COOKIE['specialization'])){
         //remember check doctor
             $_SESSION['name'] = $_COOKIE['name'];
             $_SESSION['specialization'] = $_COOKIE['specialization'];
-            echo "<script>alert('welcome $_SESSION[name] with cookie back specialization is $_COOKIE[specialization]');window.location.href='index.php'</script>";
+            echo "<script>alert('welcome $_SESSION[name] with cookie back specialization is $_COOKIE[specialization]');window.location.href='doctor/doctor.php'</script>";
             }elseif($_SESSION['name'] != "" && $_SESSION['role'] == 1){
     echo "<script>alert('welcome $_SESSION[name] back and role is $_SESSION[role] Admin');window.location.href='admin/admindashboard.php'</script>";    
 }elseif($_SESSION['name'] != "" && $_SESSION['role'] == 2){

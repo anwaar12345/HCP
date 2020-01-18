@@ -474,7 +474,7 @@ if($_SESSION['name']!=""){
         <div class="col-md-4">
           <div class="card card-blog">
             <div class="card-img">
-              <a href="doctor.html"><img src="img/dc1.jpg" alt="" class="img-fluid"></a>
+              <a href="doctor/doctor.php"><img src="img/dc1.jpg" alt="" class="img-fluid"></a>
             </div>
             <div class="card-body">
               <div class="card-category-box">
@@ -482,7 +482,7 @@ if($_SESSION['name']!=""){
                   <h6 class="category">Heart Specialist</h6>
                 </div>
               </div>
-              <h3 class="card-title"><a href="blog-single.html">Dr. XYZ </a></h3>
+              <h3 class="card-title"><a href="doctor/doctor.php">Dr. XYZ </a></h3>
               <p class="card-description">
                 She is one of the best Heart Specialits Doctors Available on HCP Platform 
               </p>
