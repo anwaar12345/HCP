@@ -1,5 +1,10 @@
 <?php
 include('header.php');
+
+$qs = mysqli_query($conn,"SELECT * FROM `tbldoctors` WHERE `email`='$_SESSION[email]' and `name`='$_SESSION[name]' and `specialization`='$_SESSION[specialization]'");
+if(mysqli_num_rows($qs) > 0){
+    $row = mysqli_fetch_array($qs);
+}
 ?>
     <!--/ Nav End /-->
 
@@ -35,10 +40,10 @@ include('header.php');
               <img src="../img/dc1.jpg" class="img-fluid" alt="">
             </div>
             <div class="post-meta">
-              <h1 class="article-title">Dr. XYZ&nbsp;&nbsp;&nbsp;<input type="submit" value="Message" class="btn btn-info"></h1>     
+              <h1 class="article-title">Dr <?php echo $row['name']; ?>&nbsp;&nbsp;&nbsp;<input type="submit" value="Message" class="btn btn-info"></h1>     
             </div>
             <div class="article-content">
-              <p>Hi i am Dr.xyz from pakistan ..... 
+              <p>Hi i am <?php echo $row['name']; ?> from pakistan ..... 
               </p>
               
             </div>
@@ -83,7 +88,7 @@ include('header.php');
             <div class="sidebar-content">
               <ul>
                 <li>
-                  <a href="#">MBBS</a>
+                  <a href="#"><?php echo $row['qualification']; ?></a>
                 </li>
                 <li>
                   <a href="#">Ms Cardiac Sugery</a>

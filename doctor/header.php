@@ -3,6 +3,7 @@ session_start();
 if($_SESSION['specialization'] == "" && $_SESSION['name'] == "" && $_SESSION['email'] == ""){
   header("location:../signin.php");
 }
+include('../db.php');
 ?>
 <!DOCTYPE html>
 <html lang="en">
