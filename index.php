@@ -644,7 +644,7 @@ if($_SESSION['name']!=""){
         <div class="row">
           <div class="col-sm-12">
             <div class="copyright-box">
-              <p class="copyright">&copy; Copyright <strong>Health Consultancy Portal</strong>. All Rights Reserved</p>
+              <p class="copyright">&copy; Copyright <?php echo date("Y"); ?><strong> Health Consultancy Portal</strong>. All Rights Reserved</p>
              
             </div>
           </div>
