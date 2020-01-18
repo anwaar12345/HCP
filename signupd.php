@@ -11,6 +11,8 @@ include('db.php');
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
 <style>
 body {
   margin: 0;
@@ -81,8 +83,8 @@ if($q){
     $email = "";
     $contact = "";
     $address = "";
-    // $folder1 = "";
-    // $folder2 = "";
+     $folder1 = "";
+     $folder2 = "";
     $rnumber = "";
     $qualification = "";
     $dimage = "";

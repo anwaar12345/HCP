@@ -2,11 +2,27 @@
 error_reporting(0);
 include('db.php');
 session_start();
-if(isset($_COOKIE['name'])){
+//remember check user
+if(isset($_COOKIE['name']) && $_COOKIE['role']==2){
 $_SESSION['name'] = $_COOKIE['name'];
-echo "<script>alert('welcome $_SESSION[name] with cookie back');window.location.href='index.php'</script>";
-}elseif($_SESSION['name'] != ""){
-    echo "<script>alert('welcome $_SESSION[name] back');window.location.href='index.php'</script>";
+$_SESSION['role'] = $_COOKIE['role'];
+echo "<script>alert('welcome $_SESSION[name] with cookie back role is $_COOKIE[role] user');window.location.href='index.php'</script>";
+}elseif(isset($_COOKIE['name']) && $_COOKIE['role']==1){
+//remember check admin
+    $_SESSION['name'] = $_COOKIE['name'];
+    $_SESSION['role'] = $_COOKIE['role'];
+    echo "<script>alert('welcome $_SESSION[name] with cookie back role is $_COOKIE[role] admin');window.location.href='index.php'</script>";
+    }elseif(isset($_COOKIE['specialization'])){
+        //remember check doctor
+            $_SESSION['name'] = $_COOKIE['name'];
+            $_SESSION['specialization'] = $_COOKIE['specialization'];
+            echo "<script>alert('welcome $_SESSION[name] with cookie back specialization is $_COOKIE[specialization]');window.location.href='index.php'</script>";
+            }elseif($_SESSION['name'] != "" && $_SESSION['role'] == 1){
+    echo "<script>alert('welcome $_SESSION[name] back and role is $_SESSION[role] Admin');window.location.href='admin/admindashboard.php'</script>";    
+}elseif($_SESSION['name'] != "" && $_SESSION['role'] == 2){
+    echo "<script>alert('welcome $_SESSION[name] back and role is $_SESSION[role] user');window.location.href='user/userdashboard.php'</script>";
+}elseif($_SESSION['specialization'] != ""){
+    echo "<script>alert('welcome $_SESSION[name] back');window.location.href='doctor/doctor.php'</script>";    
 }
 ?>
 <!DOCTYPE html>
@@ -19,6 +35,8 @@ echo "<script>alert('welcome $_SESSION[name] with cookie back');window.location.
 <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
 <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
 <style>
 body {
   margin: 0;
@@ -70,14 +88,16 @@ if($soption=="user"){
                 if(isset($remember)){
                     setcookie('email',$row['email'],time()+60*60*2);
                     setcookie('name',$row['name'],time()+60*60*2);
+                    setcookie('role',$row['role'],time()+60*60*2);
                 }
                 session_start();
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['name'] = $row['name'];
+                $_SESSION['role'] = $row['role'];
                 if($role==1){
-                    header("location:index.php");
+                    header("location:admin/admindashboard.php");
                 }elseif($role==2){
-                    header("location:doctor.php");
+                    header("location:user/userdashboard.php");
                 }
             }
     
@@ -88,7 +108,8 @@ if($soption=="user"){
        }
     }
     
-//user    
+//user    ends
+//doctor
 }elseif($soption=="doctor"){
     // $email = mysqli_real_escape_string($conn, $_POST['email']);
     // $password = md5(mysqli_real_escape_string($conn, $_POST['password']));
@@ -104,19 +125,21 @@ if($soption=="user"){
            if(mysqli_num_rows($q)>0){
             
             while($row = mysqli_fetch_array($q)){
-                $role = $row['role'];
+               // $role = $row['role'];
                 if(isset($remember)){
                     setcookie('email',$row['email'],time()+60*60*2);
                     setcookie('name',$row['name'],time()+60*60*2);
+                    setcookie('specialization',$row['specialization'],time()+60*60*2);
                 }
                 session_start();
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['name'] = $row['name'];
-                if($role==1){
-                    header("location:index.php");
-                }elseif($role==2){
-                    header("location:doctor.php");
-                }
+                $_SESSION['specialization'] = $row['specialization'];
+                //if($role==1){
+                 //   header("location:index.php");
+                //}elseif($role==2){
+                    header("location:doctor/doctor.php");
+               // }
             }
     
            }else{
