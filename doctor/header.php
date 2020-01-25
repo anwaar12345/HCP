@@ -1,57 +1,56 @@
 <?php
 session_start();
-if($_SESSION['specialization'] == "" && $_SESSION['name'] == "" && $_SESSION['email'] == ""){
-  header("location:../signin.php");
+if($_SESSION['name'] == "" && $_SESSION['email'] == "" && $_SESSION['specialization']==""){
+    header('location:../signin.php');
 }
 include('../db.php');
+     $q = mysqli_query($conn,"select * from tbldoctors where `email`='$_SESSION[email]' and `name`='$_SESSION[name]'");
+    if(mysqli_num_rows($q)>0){
+        $row = mysqli_fetch_array($q);
+       
+    }
 ?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <title>| Doctors Details |</title>
-  <meta content="width=device-width, initial-scale=1.0" name="viewport">
- 
-  <!-- Favicons -->
-  <link href="../img/final.png" rel="icon">
-  <link href="../img/apple-touch-icon.png" rel="apple-touch-icon">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>| Admin |</title>
+    <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
+    <link href="admin.css" rel="stylesheet">
 
-  <!-- Bootstrap CSS File -->
-  <link href="../lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-
-  <!-- Libraries CSS Files -->
-  <link href="../lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
-  <link href="../lib/animate/animate.min.css" rel="stylesheet">
-  <link href="../lib/ionicons/css/ionicons.min.css" rel="stylesheet">
-  <link href="../lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
-  <link href="../lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
-  <!-- Main Stylesheet File -->
-  <link href="../css/style.css" rel="stylesheet">
 
 </head>
-
 <body>
-  <!--/ Nav Star /-->
-  <nav class="navbar navbar-b navbar-trans navbar-expand-md fixed-top" id="mainNav">
-      <div class="container">
-        <a class="navbar-brand js-scroll" href="../index.php"><img src="../img/final.png" style="height: 40px; width: 100px; border-radius: 5px;"></a>
-        <button class="navbar-toggler collapsed" type="button" data-toggle="collapse" data-target="#navbarDefault"
-          aria-controls="navbarDefault" aria-expanded="false" aria-label="Toggle navigation">
-          <span></span>
-          <span></span>
-          <span></span>
-        </button>
-        <div class="navbar-collapse collapse justify-content-end" id="navbarDefault">
-          <ul class="navbar-nav">
-            <li class="nav-item" style="color:red;">
-              <a class="nav-link js-scroll active" href="#home">Home</a>
-            </li>
-            <li class="nav-item">
-              <a class="nav-link js-scroll" href="#about" style="color:black;">Dashboard</a>
-            </li>
-          
-          </ul>
+    
+<div id="throbber" style="display:none; min-height:120px;"></div>
+<div id="noty-holder"></div>
+<div id="wrapper">
+    <!-- Navigation -->
+    <nav class="navbar navbar-inverse navbar-fixed-top" role="navigation" style="background-color:lightseagreen;">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-ex1-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="doctordashboard.php">
+                <img src="../img/final.png" alt="LOGO" width="150px" height="50px">
+            </a>
         </div>
-      </div>
-    </nav>
+        <!-- Top Menu Items -->
+        <ul class="nav navbar-right top-nav">
+              <li class="dropdown" >
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size:20px;"><?php echo $row['name'];?> <b class="fa fa-angle-down"></b></a>
+                <ul class="dropdown-menu">
+                    
+                    <li class="divider"></li>
+                    <li><a href="../logout.php"><i class="fa fa-fw fa-power-off"></i> Logout</a></li>
+                </ul>
+            </li>
+        </ul>

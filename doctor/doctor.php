@@ -1,5 +1,5 @@
 <?php
-include('header.php');
+include('dheader.php');
 
 $qs = mysqli_query($conn,"SELECT * FROM `tbldoctors` WHERE `email`='$_SESSION[email]' and `name`='$_SESSION[name]' and `specialization`='$_SESSION[specialization]'");
 if(mysqli_num_rows($qs) > 0){
@@ -37,7 +37,7 @@ if(mysqli_num_rows($qs) > 0){
         <div class="col-md-8">
           <div class="post-box">
             <div class="post-thumb">
-              <img src="../img/dc1.jpg" class="img-fluid" alt="">
+              <img src="../upload/<?php echo $row['certimage'];?>" class="img-fluid" width="200px">
             </div>
             <div class="post-meta">
               <h1 class="article-title">Dr <?php echo $row['name']; ?>&nbsp;&nbsp;&nbsp;<input type="submit" value="Message" class="btn btn-info"></h1>     
@@ -88,13 +88,7 @@ if(mysqli_num_rows($qs) > 0){
             <div class="sidebar-content">
               <ul>
                 <li>
-                  <a href="#"><?php echo $row['qualification']; ?></a>
-                </li>
-                <li>
-                  <a href="#">Ms Cardiac Sugery</a>
-                </li>
-                <li>
-                  <a href="#">FCPS Cardiotheric Surgery</a>
+                  <a href="#" style="pointer-events: none;"><?php echo $row['qualification']; ?></a>
                 </li>
               </ul>
             </div>

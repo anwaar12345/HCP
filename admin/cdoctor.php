@@ -11,9 +11,12 @@ include('header.php');
             <!-- Page Heading -->
             <div class="row" id="main" >
                 <div class="col-sm-12 col-md-12 well" id="content">
-                    <h1 class="lead" margin="100px">Welcome Admin {<?php echo " $row[name] ";?>} !</h1>
-                    <img src="../upload/<?php echo $row['image']; ?>" width="200px;">
-                </div>
+             <div class="row">
+             <div class="col-md-12">
+         control doctors
+             </div>
+             </div>
+                 </div>
             </div>
             <!-- /.row -->
         </div>
