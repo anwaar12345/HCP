@@ -2,9 +2,7 @@
 //include('db.php');
 error_reporting(0);
 session_start();
-if($_SESSION['name']!=""){
-   //header("location:signin.php");
-}
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -91,20 +89,35 @@ if($_SESSION['name']!=""){
           <li class="nav-item">
             <a class="nav-link js-scroll" href="#contact">Contact US</a>
           </li>
+          <?php
+              if($_SESSION['name']==""){
+                //header("location:signin.php");
+        echo '  <li class="nav-item">
+        <a class="nav-link js-scroll" href="signin.php">Signin</a>
+    </li>
+   
+    <li class="nav-item">
+      <div class="dropdown">
+        <button class="dropbtn">
+          Registere here
+        </button>
+        <div class="dropdown-content">
+          <a href="signup.php">SignUP As User</a>
+          <a href="signupd.php">SignUP As Doctor</a>
+        </div>
+      </div>
+    </li>';
+              }elseif($_SESSION['name']!=""){
+
+              ?>
           <li class="nav-item">
-              <a class="nav-link js-scroll" href="signin.php">Signin</a>
+          <div class="dropdown">
+          <a class="dropbtn" href="logout.php" style="color:black;">Logout</a>
+          </div>
           </li>
-          <li class="nav-item">
-            <div class="dropdown">
-              <button class="dropbtn">
-                Registere here
-              </button>
-              <div class="dropdown-content">
-                <a href="signup.php">SignUP As User</a>
-                <a href="signupd.php">SignUP As Doctor</a>
-              </div>
-            </div>
-          </li>
+          <?php
+          }
+          ?>
         </ul>
       </div>
     </div>

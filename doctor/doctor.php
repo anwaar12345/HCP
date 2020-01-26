@@ -22,7 +22,7 @@ if(mysqli_num_rows($qs) > 0){
             <li class="breadcrumb-item">
               <a href="#">Doctor</a>
             </li>
-            <li class="breadcrumb-item active">information</li>
+            <li class="breadcrumb-item active"><?php echo $row['name']; ?></li>
           </ol>
         </div>
       </div>
@@ -40,10 +40,10 @@ if(mysqli_num_rows($qs) > 0){
               <img src="../upload/<?php echo $row['certimage'];?>" class="img-fluid" width="200px">
             </div>
             <div class="post-meta">
-              <h1 class="article-title">Dr <?php echo $row['name']; ?>&nbsp;&nbsp;&nbsp;<input type="submit" value="Message" class="btn btn-info"></h1>     
+              <h1 class="article-title">Dr.<?php echo $row['name']; ?>&nbsp;&nbsp;&nbsp;<input type="submit" value="Message" class="btn btn-info"></h1>     
             </div>
             <div class="article-content">
-              <p>Hi i am <?php echo $row['name']; ?> from pakistan ..... 
+              <p>Hi i am Dr.<?php echo $row['name']; ?> from pakistan ..... 
               </p>
               
             </div>

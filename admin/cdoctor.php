@@ -25,8 +25,9 @@ include('header.php');
          <table class='table'>
                     <thead>
                       <tr>
-                        <th>Id</th>
+                        <th>Email</th>
                         <th>Name</th>
+                        <th>Father Name</th>
                         <th>Contact</th>
                         <th>Profile Picture</th>
                         <th>Registration</th>
@@ -44,14 +45,15 @@ include('header.php');
                           while($row = mysqli_fetch_array($q)){
                             
                             echo "<tr>
-                            <td>$row[id]</td>
+                            <td>$row[email]</td>
                             <td><a href='view.php?id=$row[id]'>$row[name]</a></td>
+                            <td>$row[faname]</td>
                             <td>$row[contact]</td>
                             <td><img src='../upload/$row[certimage]' width='100px'></td>
                             <td>$row[regno]</td>
                             <td>$row[qualification]</td>
                             <td>$row[specialization]</td> 
-                            <td><a href='actionu.php?id=$row[id]' class='btn btn-info'>Approve</a>&nbsp;<a href='actionb.php?id=$row[id]' class='btn btn-danger'>Block</a></td>
+                            <td><a href='actionu.php?id=$row[id]' class='btn btn-info' style='margin:5px;'>Approve</a>&nbsp;<a href='actionb.php?id=$row[id]' class='btn btn-danger'>Block</a></td>
                             </tr>";
                         }
                        

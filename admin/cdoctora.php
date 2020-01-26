@@ -28,6 +28,7 @@ include('header.php');
                       <tr>
                         <th>Id</th>
                         <th>Name</th>
+                        
                         <th>Contact</th>
                         <th>Profile Picture</th>
                         <th>Registration</th>
@@ -47,6 +48,7 @@ include('header.php');
                             echo "<tr>
                             <td>$row[id]</td>
                             <td><a href='view.php?id=$row[id]'>$row[name]</a></td>
+                        
                             <td>$row[contact]</td>
                             <td><img src='../upload/$row[certimage]' width='100px'></td>
                             <td>$row[regno]</td>

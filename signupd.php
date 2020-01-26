@@ -41,6 +41,7 @@ body {
 <?php
 $ne = "";
 $le = "";
+$fne = "";
 $ee = "";
 $ep = "";
 $ec = "";
@@ -51,6 +52,7 @@ if(isset($_POST['btns'])){
     $fname = mysqli_real_escape_string($conn, $_POST['firstname']);
     $lstname = mysqli_real_escape_string($conn, $_POST['lastname']);
     $name = "$fname $lstname";
+    $faname = mysqli_real_escape_string($conn, $_POST['faname']);
     $email = mysqli_real_escape_string($conn, $_POST['email']);
     $contact = mysqli_real_escape_string($conn, $_POST['contact']);
     $address = mysqli_real_escape_string($conn, $_POST['address']);
@@ -69,7 +71,7 @@ if(isset($_POST['btns'])){
     $gender = mysqli_real_escape_string($conn, $_POST['gender']);
 
 if(move_uploaded_file($dimove,$folder1) && move_uploaded_file($cimove,$folder2)){
-$q = mysqli_query($conn, "INSERT INTO `tbldoctors`(`name`, `email`, `contact`, `address`, `regno`, `qualification`, `degimage`, `certimage`, `city`, `country`, `specialization`, `password`, `gender`) VALUES ('$name','$email','$contact','$address','$rnumber','$qualification','$dimage','$cimage','$city','$country','$specialization','$password','$gender')");
+$q = mysqli_query($conn, "INSERT INTO `tbldoctors`(`name`, `faname`, `email`, `contact`, `address`, `regno`, `qualification`, `degimage`, `certimage`, `city`, `country`, `specialization`, `password`, `gender`) VALUES ('$name','$faname','$email','$contact','$address','$rnumber','$qualification','$dimage','$cimage','$city','$country','$specialization','$password','$gender')");
 if($q){
     echo "<script>alert('Registered Successfully');window.location.href='signin.php';</script>";
 }
@@ -80,6 +82,7 @@ if($q){
 }else{
     $fname = "";
     $lstname = "";
+    $faname = "";
     $email = "";
     $contact = "";
     $address = "";
@@ -124,6 +127,16 @@ if($q){
                                 <input type="text" name="lastname"  class="form-control" required value="<?php echo $lstname; ?>"> <p style="color:red;"><?php if($le){echo $le;} ?></p>
                             </div>
                     </div>
+                    
+                </div>
+                <div class="row">
+                    <div class="col-md-12">
+                        <div class="form-group">
+                                <label for="faname" class="text-info">Father Name:</label><br>
+                                <input type="text" name="faname" class="form-control" required value="<?php echo $faname; ?>"> <p style="color:red;"><?php if($ne){echo $ne;} ?></p> 
+                            </div>
+                    </div>
+                    
                 </div>
                 <div class="row">
                     <div class="col-md-6">
