@@ -14,14 +14,15 @@ include('header.php');
              <div class="row">
              <div class="col-md-12">
              <?php
-             $q = mysqli_query($conn,"SELECT * FROM `tbldoctors` where `status`=1 or `status`=3");
+             $q = mysqli_query($conn,"SELECT * FROM `tbldoctors` WHERE `status`=2");
              if(mysqli_num_rows($q)>0){
             
              }else{
-                echo "No Doctors pending for approvel";       
+                echo "All Doctors are not Approved";       
              }
              ?>
-             <form action="actions.php" method='post'>
+         
+            
          <table class='table'>
                     <thead>
                       <tr>
@@ -32,7 +33,7 @@ include('header.php');
                         <th>Registration</th>
                         <th>Qualification</th>
                         <th>Specialization</th>
-                        <th>Actions</th>
+                        
 
                       </tr>
                    
@@ -50,8 +51,7 @@ include('header.php');
                             <td><img src='../upload/$row[certimage]' width='100px'></td>
                             <td>$row[regno]</td>
                             <td>$row[qualification]</td>
-                            <td>$row[specialization]</td> 
-                            <td><a href='actionu.php?id=$row[id]' class='btn btn-info'>Approve</a>&nbsp;<a href='actionb.php?id=$row[id]' class='btn btn-danger'>Block</a></td>
+                            <td>$row[specialization]</td>
                             </tr>";
                         }
                        
@@ -59,8 +59,7 @@ include('header.php');
                       
                     </tbody>
                   </table>
-                  </form>
-                  
+         
              </div>
              </div>
                  </div>
@@ -72,6 +71,5 @@ include('header.php');
     <!-- /#page-wrapper -->
 </div><!-- /#wrapper -->
 <?php
-
 include('footer.php');
 ?>

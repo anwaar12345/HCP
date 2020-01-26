@@ -12,8 +12,7 @@
                     <a href="#" data-toggle="collapse" data-target="#submenu-2" style="background-color:lightseagreen;color:red;"><i class="fa fa-fw fa-user-md"></i>  Control Doctors <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                     <ul id="submenu-2" class="collapse">
                         <li><a href="cdoctor.php"><i class="fa fa-angle-double-right"></i>Pending for approval</a></li>
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i>Approved Doctors</a></li>
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> SUBMENU 2.3</a></li>
+                        <li><a href="cdoctora.php"><i class="fa fa-angle-double-right"></i>Approved Doctors</a></li>
                     </ul>
                 </li>
                 <li>

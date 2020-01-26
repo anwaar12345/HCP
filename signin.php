@@ -125,6 +125,10 @@ if($soption=="user"){
            if(mysqli_num_rows($q)>0){
             
             while($row = mysqli_fetch_array($q)){
+                if($row['status']==1){
+                    echo "<script>alert('waiting for approvel');</script>";         
+                }else{
+                        
                // $role = $row['role'];
                 if(isset($remember)){
                     setcookie('email',$row['email'],time()+60*60*2);
@@ -139,6 +143,7 @@ if($soption=="user"){
                  //   header("location:index.php");
                 //}elseif($role==2){
                     header("location:doctor/doctor.php");
+                }
                // }
             }
     
