@@ -2,8 +2,6 @@
 session_start();
 if($_SESSION['name'] == "" && $_SESSION['email'] == ""){
   header("location:../signin.php");
-}elseif($_SESSION['specialization'] == "" && $_SESSION['name'] == "" && $_SESSION['email'] == ""){
-  header("location:../signin.php");
 }
 include('../db.php');
 ?>
@@ -50,7 +48,7 @@ include('../db.php');
               <a class="nav-link js-scroll active" href="#home">Home</a>
             </li>
             <li class="nav-item">
-              <a class="nav-link js-scroll" href="doctordashboard.php" style="color:black;">Dashboard</a>
+              <a class="nav-link js-scroll" href="userdashboard.php" style="color:black;">Dashboard</a>
             </li>
           
           </ul>
