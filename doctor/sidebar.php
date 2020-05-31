@@ -11,6 +11,9 @@
                 <li>
                     <a href="doctor.php" style="background-color:lightseagreen;color:red;"><i class="fa fa-fw fa-desktop" ></i>View Profile</a>
                 </li>
+                <li>
+                    <a href="manage.php" style="background-color:lightseagreen;color:red;"><i class="fa fa-fw fa-desktop" ></i>Manage Availability</a>
+                </li>
           </ul>
         </div>
         <!-- /.navbar-collapse -->

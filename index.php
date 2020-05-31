@@ -2,7 +2,10 @@
 //include('db.php');
 error_reporting(0);
 session_start();
-
+include('db.php');
+$q = mysqli_query($conn,"SELECT * FROM `tbldoctors`");
+if(mysqli_num_rows($q) > 0){
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -14,6 +17,7 @@ session_start();
   <!-- Favicons -->
   <link href="img/final.png" rel="icon">
   <link href="img/apple-touch-icon.png" rel="apple-touch-icon">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 
   <!-- Bootstrap CSS File -->
   <link href="lib/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -24,7 +28,7 @@ session_start();
   <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
   <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
   <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
-
+  
   <!-- Main Stylesheet File -->
   <link href="css/style.css" rel="stylesheet">
 
@@ -64,6 +68,34 @@ session_start();
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
   </style>
+<script>
+$(document).ready(function(){
+  
+$("#search").click(function(e){
+
+e.preventDefault;
+
+let specialization = $("#specialization").val();
+let country = $("#country").val();
+let city = $("#city").val();
+
+$.ajax({
+  url:  "search.php",
+  type: "get",
+  crossDomain:true,
+  data: {specialization : specialization,country : country,city : city },
+  success: function(data,status,xhr){
+    $("#div2").html(data);
+  }
+});
+}
+
+);
+
+
+
+});
+</script>
 </head>
 
 <body id="page-top">
@@ -133,7 +165,20 @@ session_start();
           <!--<p class="display-6 color-d">Hello, world!</p>-->
           <h1 class="intro-title mb-4">HCP</h1>
           <p class="intro-subtitle"><span class="text-slider-items">We Health Consultancy Portal Aims,to provide an Online Platform ....!,To Find a Doctor For Your Queries,and Get an Appointment and Diagnose Your Problems Online, Search your Doctor....!</span><strong class="text-slider"></strong></p>
-   <select class="inputg"><option>Heart Specialist</option><option>Physician</option><option>Neurosergeon</option></select><input type="text" class="inputg" placeholder="Country ...!"><input type="text" placeholder="City ...!" class="inputg"><input type="submit" class="btn btn-primary" value="Search" style="margin-bottom: 5px;width: 100px;">
+
+
+
+   <select class="inputg" name="specialization" required id="specialization">
+   <?php
+
+while($row = mysqli_fetch_array($q)){
+    echo "<option value='$row[specialization]'>".$row['specialization']."</option>";
+}
+
+
+?> 
+   </select><input type="text" class="inputg" placeholder="Country ...!" name="country" id="country" required><input type="text" placeholder="City ...!" class="inputg" name="city" id="city" required><input type="submit" class="btn btn-primary" value="Search" style="margin-bottom: 5px;width: 100px;" id="search" name="search">
+<div id="div2" style="z-index:3"></div>
           <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="#about" role="button" style="border-radius: 50px; opacity: 0.6;"><i class="fa fa-chevron-down"></i></a></p>
         </div>
       </div>
@@ -685,7 +730,7 @@ session_start();
 
   <!-- Template Main Javascript File -->
   <script src="js/main.js"></script>
-
-
+  <!-- ajax -->
+  
 </body>
 </html>
