@@ -85,7 +85,13 @@ $.ajax({
   crossDomain:true,
   data: {specialization : specialization,country : country,city : city },
   success: function(data,status,xhr){
-    $("#div2").html(data);
+  
+    $('#doctors').html(data);  
+    $('#dataModal').modal("show");
+
+
+
+  
   }
 });
 }
@@ -178,7 +184,22 @@ while($row = mysqli_fetch_array($q)){
 
 ?> 
    </select><input type="text" class="inputg" placeholder="Country ...!" name="country" id="country" required><input type="text" placeholder="City ...!" class="inputg" name="city" id="city" required><input type="submit" class="btn btn-primary" value="Search" style="margin-bottom: 5px;width: 100px;" id="search" name="search">
-<div id="div2" style="z-index:3"></div>
+
+<div id="dataModal" class="modal fade text-dark" style="overflow: scroll;">  
+      <div class="modal-dialog">  
+           <div class="modal-content">  
+                <div class="modal-header">  
+                       
+                     <h4 class="modal-title">Search Results</h4>  
+                </div>  
+                <div class="modal-body" id="doctors">  
+                </div>  
+                <div class="modal-footer">  
+                     <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>  
+                </div>  
+           </div>  
+      </div>  
+ </div>  
           <p class="pt-3"><a class="btn btn-primary btn js-scroll px-4" href="#about" role="button" style="border-radius: 50px; opacity: 0.6;"><i class="fa fa-chevron-down"></i></a></p>
         </div>
       </div>

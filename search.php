@@ -4,7 +4,7 @@ include('db.php');
 $q = mysqli_query($conn, "SELECT * FROM `tbldoctors` WHERE specialization = '$_GET[specialization]' and country = '$_GET[country]' and city = '$_GET[city]'");
 if(mysqli_num_rows($q) > 0){
     while($row = mysqli_fetch_array($q)){
-        echo " <table class='table table-hover'>
+        echo " <table class='table table-hover table-responsive text-dark'>
         <thead>
           <tr>
             <th>Name</th>
