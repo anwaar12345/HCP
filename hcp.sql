@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 26, 2020 at 06:24 AM
+-- Generation Time: Jul 15, 2020 at 11:10 PM
 -- Server version: 10.4.10-MariaDB
--- PHP Version: 7.1.33
+-- PHP Version: 7.4.3
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -21,6 +21,39 @@ SET time_zone = "+00:00";
 --
 -- Database: `hcp`
 --
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `appointments`
+--
+
+CREATE TABLE `appointments` (
+  `id` int(10) NOT NULL,
+  `docid` int(10) NOT NULL,
+  `uid` int(10) NOT NULL,
+  `time` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `docavalibility`
+--
+
+CREATE TABLE `docavalibility` (
+  `id` int(10) NOT NULL,
+  `docid` int(10) NOT NULL,
+  `time` varchar(150) NOT NULL,
+  `days` varchar(150) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `docavalibility`
+--
+
+INSERT INTO `docavalibility` (`id`, `docid`, `time`, `days`) VALUES
+(1, 16, '23:12', 'Monday - saturday');
 
 -- --------------------------------------------------------
 
@@ -70,6 +103,7 @@ INSERT INTO `roles` (`id`, `role`) VALUES
 CREATE TABLE `tbldoctors` (
   `id` int(10) NOT NULL,
   `name` varchar(255) NOT NULL,
+  `faname` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `contact` varchar(255) NOT NULL,
   `address` varchar(255) NOT NULL,
@@ -89,14 +123,21 @@ CREATE TABLE `tbldoctors` (
 -- Dumping data for table `tbldoctors`
 --
 
-INSERT INTO `tbldoctors` (`id`, `name`, `email`, `contact`, `address`, `regno`, `qualification`, `degimage`, `certimage`, `city`, `country`, `specialization`, `password`, `gender`, `status`) VALUES
-(1, 'Dr syed anwar ahmed  shah', 'syed123@gmail.com', '03012345654', 'karachi', '123443', 'MBBS', '72041755_2395208774072216_5816196432515825664_n.jpg', '81596780_585958348912912_8862971486982373376_n.jpg', 'karachi', 'pakistan', 'eye specialiat', '1630937c3d00b4f4b153599d93469963', 'male', 2),
-(2, 'Dr nee ww', 's@s', '4344556', 'fds', '123443', 'MBBS', '72041755_2395208774072216_5816196432515825664_n.jpg', '81596780_585958348912912_8862971486982373376_n.jpg', 'karachi', 'pakistan', 'eye specialiat', '1630937c3d00b4f4b153599d93469963', 'male', 2),
-(3, 'dr test testing', 'drtst@email.com', '03012342654', 'dcfgrfgrvggvgrvfrvcfcfrcef', '123443', 'MBBS', '72041755_2395208774072216_5816196432515825664_n.jpg', '81596780_585958348912912_8862971486982373376_n.jpg', 'karachi', 'pakistan', 'heart specialiat', '1630937c3d00b4f4b153599d93469963', 'female', 2),
-(4, 'Dr stat us', 'us@us.com', '03012134321', 'new user doc', '123', 'mbbs', '82220525_471175433817246_8914716381086220288_n.jpg', '72041755_2395208774072216_5816196432515825664_n.jpg', 'khi', 'pak', 's', '1630937c3d00b4f4b153599d93469963', 'male', 2),
-(5, 'asxd fds', 'us@us.comw', '03012134321', 'dffdff', '123', 'mbbs', '81626197_845759099209945_1286228626525650944_n.jpg', '82220525_471175433817246_8914716381086220288_n.jpg', 'f', 'r', 'f', '108bc7b6961e71b2e770387a378cbc10', 'male', 2),
-(6, 'Dr statd fds', 'us@us.comss', '03012134321', 'sss', '123', 'mbbs', '81626197_845759099209945_1286228626525650944_n.jpg', '82220525_471175433817246_8914716381086220288_n.jpg', 'khi', 'pak', 's', '1630937c3d00b4f4b153599d93469963', 'male', 2),
-(7, 'Dr Danish Iqbal', 'drdanish@gmail.com', '03012134321', 'shahssdscdcds', '123', 'mbbs', '81626197_845759099209945_1286228626525650944_n.jpg', '82220525_471175433817246_8914716381086220288_n.jpg', 'khi', 'pak', 'eye ', '202cb962ac59075b964b07152d234b70', 'male', 2);
+INSERT INTO `tbldoctors` (`id`, `name`, `faname`, `email`, `contact`, `address`, `regno`, `qualification`, `degimage`, `certimage`, `city`, `country`, `specialization`, `password`, `gender`, `status`) VALUES
+(1, 'Dr syed anwar ahmed  shah', '', 'syed123@gmail.com', '03012345654', 'karachi', '123443', 'MBBS', '72041755_2395208774072216_5816196432515825664_n.jpg', '81596780_585958348912912_8862971486982373376_n.jpg', 'karachi', 'pakistan', 'eye specialiat', '1630937c3d00b4f4b153599d93469963', 'male', 2),
+(2, 'Dr nee ww', '', 's@s', '4344556', 'fds', '123443', 'MBBS', '72041755_2395208774072216_5816196432515825664_n.jpg', '81596780_585958348912912_8862971486982373376_n.jpg', 'karachi', 'pakistan', 'eye specialiat', '1630937c3d00b4f4b153599d93469963', 'male', 2),
+(3, 'dr test testing', '', 'drtst@email.com', '03012342654', 'dcfgrfgrvggvgrvfrvcfcfrcef', '123443', 'MBBS', '72041755_2395208774072216_5816196432515825664_n.jpg', '81596780_585958348912912_8862971486982373376_n.jpg', 'karachi', 'pakistan', 'heart specialiat', '1630937c3d00b4f4b153599d93469963', 'female', 2),
+(4, 'Dr stat us', '', 'us@us.com', '03012134321', 'new user doc', '123', 'mbbs', '82220525_471175433817246_8914716381086220288_n.jpg', '72041755_2395208774072216_5816196432515825664_n.jpg', 'khi', 'pak', 'y', '1630937c3d00b4f4b153599d93469963', 'male', 2),
+(5, 'asxd fds', '', 'us@us.comw', '03012134321', 'dffdff', '123', 'mbbs', '81626197_845759099209945_1286228626525650944_n.jpg', '82220525_471175433817246_8914716381086220288_n.jpg', 'f', 'r', 'f', '108bc7b6961e71b2e770387a378cbc10', 'male', 2),
+(6, 'Dr statd fds', '', 'us@us.comss', '03012134321', 'sss', '123', 'mbbs', '81626197_845759099209945_1286228626525650944_n.jpg', '82220525_471175433817246_8914716381086220288_n.jpg', 'khi', 'pak', 'y', '1630937c3d00b4f4b153599d93469963', 'male', 2),
+(7, 'Dr Danish Iqbal', '', 'drdanish@gmail.com', '03012134321', 'shahssdscdcds', '123', 'mbbs', '81626197_845759099209945_1286228626525650944_n.jpg', '82220525_471175433817246_8914716381086220288_n.jpg', 'khi', 'pak', 'eye ', '202cb962ac59075b964b07152d234b70', 'male', 2),
+(8, 'Dr statis tics', '', 'drdanishs@gmail.com', '03012134321', 'karachi', '123122', 'mbbs', '81596780_585958348912912_8862971486982373376_n.jpg', '82220525_471175433817246_8914716381086220288_n.jpg', 'khi', 'pak', 'y', '202cb962ac59075b964b07152d234b70', 'male', 2),
+(10, 'Syed Anwar Ahmed Shah', 'Syed Zia hussain shah', 'syedanwar016@gmail.com', '03012134321', 'Abdul Razzaq manzil sadar bar lane kalakot lyari karachi', '123122', 'mbbs', '81626197_845759099209945_1286228626525650944_n.jpg', '72041755_2395208774072216_5816196432515825664_n (1).jpg', 'karachi', 'pakistan', 'eye specialist', '1630937c3d00b4f4b153599d93469963', 'male', 2),
+(11, 'Syed Anwar Ahmed Shah', 'Syed Zia hussain shah', 'syedanwar06@gmail.com', '03012134321', 'Abdul Razzaq manzil sadar bar lane kalakot lyari karachi', '123122', 'mbbs', '72041755_2395208774072216_5816196432515825664_n (1).jpg', '72041755_2395208774072216_5816196432515825664_n (1).jpg', 'karachi', 'pakistan', 'eye specialist', '1630937c3d00b4f4b153599d93469963', 'male', 2),
+(14, 'Syed Anwar Ahmed Shah', 'Syed Zia hussain shah', 'us@us.co', '03012134321', 'khi', '123122', 'mbbs', '72041755_2395208774072216_5816196432515825664_n.jpg', '81626197_845759099209945_1286228626525650944_n.jpg', 'karachi', 'pakistan', 'eye specialist', '1630937c3d00b4f4b153599d93469963', 'male', 2),
+(15, 'Syed Anwar Ahmed Shah', 'Syed Zia hussain shah', 'syed13@gmail.com', '03012134321', 'lyari karachi', '123122', 'mbbs', '81626197_845759099209945_1286228626525650944_n.jpg', '72041755_2395208774072216_5816196432515825664_n.jpg', 'karachi', 'pakistan', 'eye specialist', '202cb962ac59075b964b07152d234b70', 'male', 2),
+(16, 'new doctor', 'doctor', 'doct@doct.com', '923133899568', 'shah', '1234cf', 'mbbs', '72041755_2395208774072216_5816196432515825664_n.jpg', '82220525_471175433817246_8914716381086220288_n.jpg', 'khi', 'pak ', 'y', '1630937c3d00b4f4b153599d93469963', 'male', 2),
+(17, 'dr tester tester', 'senior tester', 'sn.tester@gmail.com', '03018703123', 'address of the doctor is valid', '2233454', 'MBBS', 'as1.PNG', 'ld6.PNG', 'khi', 'pak', 'eye', 'cf43487cc21cd8ec0154bc3d4e5d3f23', 'male', 2);
 
 -- --------------------------------------------------------
 
@@ -124,11 +165,24 @@ INSERT INTO `tblusers` (`id`, `name`, `email`, `password`, `contact`, `image`, `
 (4, 'test user', 'user@email.com', 'ee11cbb19052e40b07aac0ca060c23ee', 123, '81626197_845759099209945_1286228626525650944_n.jpg', 'Male', 2),
 (5, 'test user2', 'user2@email.com', '1630937c3d00b4f4b153599d93469963', 123, '82220525_471175433817246_8914716381086220288_n.jpg', 'Male', 2),
 (6, 'usertest1 test', 'ut@email.com', '1630937c3d00b4f4b153599d93469963', 2147483647, '81596780_585958348912912_8862971486982373376_n.jpg', 'Male', 2),
-(7, 'danish Iqbal', 'danish@gmail.com', '202cb962ac59075b964b07152d234b70', 2147483647, '72041755_2395208774072216_5816196432515825664_n (1).jpg', 'Male', 2);
+(7, 'danish Iqbal', 'danish@gmail.com', '202cb962ac59075b964b07152d234b70', 2147483647, '72041755_2395208774072216_5816196432515825664_n (1).jpg', 'Male', 2),
+(8, 'test last', 'last@email.com', 'cf43487cc21cd8ec0154bc3d4e5d3f23', 2147483647, 'cloud.PNG', 'Male', 2);
 
 --
 -- Indexes for dumped tables
 --
+
+--
+-- Indexes for table `appointments`
+--
+ALTER TABLE `appointments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `docavalibility`
+--
+ALTER TABLE `docavalibility`
+  ADD PRIMARY KEY (`id`);
 
 --
 -- Indexes for table `docstatus`
@@ -161,6 +215,18 @@ ALTER TABLE `tblusers`
 --
 
 --
+-- AUTO_INCREMENT for table `appointments`
+--
+ALTER TABLE `appointments`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `docavalibility`
+--
+ALTER TABLE `docavalibility`
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
 -- AUTO_INCREMENT for table `docstatus`
 --
 ALTER TABLE `docstatus`
@@ -176,13 +242,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `tbldoctors`
 --
 ALTER TABLE `tbldoctors`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
 
 --
 -- AUTO_INCREMENT for table `tblusers`
 --
 ALTER TABLE `tblusers`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
