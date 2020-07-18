@@ -3,7 +3,7 @@
 error_reporting(0);
 session_start();
 include('db.php');
-$q = mysqli_query($conn,"SELECT * FROM `tbldoctors`");
+$q = mysqli_query($conn,"SELECT DISTINCT specialization FROM `tbldoctors`");
 if(mysqli_num_rows($q) > 0){
 }
 ?>

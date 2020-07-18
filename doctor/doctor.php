@@ -1,9 +1,19 @@
 <?php
 include('dheader.php');
+if($_GET['id']){
 
-$qs = mysqli_query($conn,"SELECT * FROM `tbldoctors` WHERE `email`='$_SESSION[email]' and `name`='$_SESSION[name]' and `specialization`='$_SESSION[specialization]'");
+  $qs = mysqli_query($conn,"SELECT * FROM `tbldoctors` WHERE `id`='$_GET[id]'");
 if(mysqli_num_rows($qs) > 0){
     $row = mysqli_fetch_array($qs);
+}
+
+
+}else{
+  $qs = mysqli_query($conn,"SELECT * FROM `tbldoctors` WHERE `email`='$_SESSION[email]' and `name`='$_SESSION[name]' and `specialization`='$_SESSION[specialization]'");
+  if(mysqli_num_rows($qs) > 0){
+      $row = mysqli_fetch_array($qs);
+  }
+  
 }
 ?>
     <!--/ Nav End /-->
@@ -40,7 +50,7 @@ if(mysqli_num_rows($qs) > 0){
               <img src="../upload/<?php echo $row['certimage'];?>" class="img-fluid" width="200px">
             </div>
             <div class="post-meta">
-              <h1 class="article-title">Dr.<?php echo $row['name']; ?>&nbsp;&nbsp;&nbsp;<input type="submit" value="Message" class="btn btn-info"></h1>     
+              <h1 class="article-title">Dr.<?php echo $row['name']; ?>&nbsp;&nbsp;&nbsp;<a href="booking/booking.php?id=<?php echo $row['id'] ?>"class="btn btn-info">Get Appointment</a></h1>     
             </div>
             <div class="article-content">
               <p>Hi i am Dr.<?php echo $row['name']; ?> from pakistan ..... 

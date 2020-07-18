@@ -1,9 +1,14 @@
 <?php
 session_start();
-if($_SESSION['name'] == "" && $_SESSION['email'] == ""){
-  header("location:../signin.php");
-}elseif($_SESSION['specialization'] == "" && $_SESSION['name'] == "" && $_SESSION['email'] == ""){
-  header("location:../signin.php");
+if($_GET['id']){
+  
+}else{
+  if($_SESSION['name'] == "" && $_SESSION['email'] == ""){
+    header("location:../signin.php");
+  }elseif($_SESSION['specialization'] == "" && $_SESSION['name'] == "" && $_SESSION['email'] == ""){
+    header("location:../signin.php");
+  }
+
 }
 include('../db.php');
 ?>
