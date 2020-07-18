@@ -94,6 +94,8 @@ if($soption=="user"){
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['name'] = $row['name'];
                 $_SESSION['role'] = $row['role'];
+                $_SESSION['id'] = $row['id'];
+                
                 if($role==1){
                     header("location:admin/admindashboard.php");
                 }elseif($role==2){
@@ -139,6 +141,7 @@ if($soption=="user"){
                 $_SESSION['email'] = $row['email'];
                 $_SESSION['name'] = $row['name'];
                 $_SESSION['specialization'] = $row['specialization'];
+                $_SESSION['id'] = $row['id'];
                 //if($role==1){
                  //   header("location:index.php");
                 //}elseif($role==2){

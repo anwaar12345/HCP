@@ -50,7 +50,7 @@ if(mysqli_num_rows($qs) > 0){
               <img src="../upload/<?php echo $row['certimage'];?>" class="img-fluid" width="200px">
             </div>
             <div class="post-meta">
-              <h1 class="article-title">Dr.<?php echo $row['name']; ?>&nbsp;&nbsp;&nbsp;<a href="booking/booking.php?id=<?php echo $row['id'] ?>"class="btn btn-info">Get Appointment</a></h1>     
+              <h1 class="article-title">Dr.<?php echo $row['name']; ?>&nbsp;&nbsp;&nbsp;<a href="../booking/index.php?id=<?php echo $row['id'] ?>"class="btn btn-info">Get Appointment</a></h1>     
             </div>
             <div class="article-content">
               <p>Hi i am Dr.<?php echo $row['name']; ?> from pakistan ..... 
