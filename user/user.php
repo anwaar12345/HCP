@@ -48,37 +48,7 @@ if(mysqli_num_rows($qs) > 0){
               
             </div>
           </div>
-          <div class="box-comments">
-            <div class="title-box-2">
-              <h4 class="title-comments title-left">Reviews (4)</h4>
-            </div>
-            <ul class="list-comments">
-              <li>
-                <div class="comment-avatar">
-                  <img src="../img/testimonial-2.jpg" alt="">
-                </div>
-                <div class="comment-details">
-                  <h4 class="comment-author">Reviewer no 1</h4>
-                  <span>18 Sep 2019</span>
-                  <p>Testing Maju
-                  </p>
-                </div>
-              </li>
-              
-                <div class="comment-avatar">
-                  <img src="../img/testimonial-4.jpg" alt="">
-                </div>
-                <div class="comment-details">
-                  <h4 class="comment-author">Reviewer no 2</h4>
-                  <span>27 nov 2019</span>
-                  <p>
-                    Maju Mid Exams
-                  </p>
-                 
-                </div>
-              </li>
-            </ul>
-          </div>
+         
         </div>
         <div class="col-md-6">
           
