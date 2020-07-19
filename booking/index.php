@@ -1,37 +1,30 @@
 <?php
-use \PhpPot\Service\StripePayment;
-
+session_start();
+include('../db.php');
+use \Hcp\Service\StripePayment;
+echo $_SESSION['id']." ".$_SESSION['docid'];
 require_once "config.php";
 
 if (!empty($_POST["token"])) {
     require_once 'StripePayment.php';
+
     $stripePayment = new StripePayment();
     
     $stripeResponse = $stripePayment->chargeAmountFromCard($_POST);
     
-    require_once "DBController.php";
-    $dbController = new DBController();
     
-    $amount = $stripeResponse["amount"] /100;
+    $amount = $stripeResponse["amount"] / 100;
     
-    $param_type = 'ssdssss';
-    $param_value_array = array(
-        $_POST['email'],
-        $_POST['item_number'],
-        $amount,
-        $stripeResponse["currency"],
-        $stripeResponse["balance_transaction"],
-        $stripeResponse["status"],
-        json_encode($stripeResponse)
-    );
-    $query = "INSERT INTO tbl_payment (email, item_number, amount, currency_code, txn_id, payment_status, payment_response) values (?, ?, ?, ?, ?, ?, ?)";
-    $id = $dbController->insert($query, $param_type, $param_value_array);
-    
+    $query = "INSERT INTO `payments`(`user_id`, `doctor_id`, `amount`, `name`, `card_number`, `cvc`) VALUES ('$_SESSION[id]','$_SESSION[docid]','$_POST[amount]','$_POST[name]','$_POST[card_number]','$_POST[cvc]')";
+    if(!mysqli_query($conn, $query)){
+        echo "failed ".$query;
+    }
     if ($stripeResponse['amount_refunded'] == 0 && empty($stripeResponse['failure_code']) && $stripeResponse['paid'] == 1 && $stripeResponse['captured'] == 1 && $stripeResponse['status'] == 'succeeded') {
         $successMessage = "Stripe payment is completed successfully. The TXN ID is " . $stripeResponse["balance_transaction"];
     }
 }
 ?>
+<!DOCTYPE html>
 <html>
 <head>
 <link href="style.css" rel="stylesheet" type="text/css"/ >
@@ -58,7 +51,7 @@ if (!empty($_POST["token"])) {
                 <div class="field-row">
                     <label>Card Number</label> <span
                         id="card-number-info" class="info"></span><br> <input
-                        type="text" id="card-number" name="card-number"
+                        type="text" id="card-number" name="card_number"
                         class="demoInputBox">
                 </div>
                 <div class="field-row">
@@ -105,69 +98,16 @@ if (!empty($_POST["token"])) {
                         <img alt="loader" src="LoaderIcon.gif">
                     </div>
                 </div>
-                <input type='hidden' name='amount' value='0.5'> <input
-                    type='hidden' name='currency_code' value='USD'> <input
-                    type='hidden' name='item_name' value='Test Product'>
-                <input type='hidden' name='item_number'
-                    value='PHPPOTEG#1'>
+                <input type='hidden' name='amount' value='<?php echo 100; ?>'> <input
+                    type='hidden' name='currency_code' value='PKR'> <input
+                    type='hidden' name='hcp_payment' value='HCP Payments'>
+                <input type='hidden' name='hcp_payment_number'
+                    value='HCPPAYMENTSYSTEM#1'>
             </form>
-    <div class="test-data">
-        <h3>Test Card Information</h3>
-        <p>Use these test card numbers with valid expiration month
-            / year and CVC code for testing with this demo.</p>
-        <table class="tutorial-table" cellspacing="0" cellpadding="0" width="100%">
-            <tr>
-                <th>CARD NUMBER</th>
-                <th>BRAND</th>
-            </tr>
-            <tr>
-                <td>4242424242424242</td>
-                <td>Visa</td>
-            </tr>
-            <tr>
-                <td>4000056655665556</td>
-                <td>Visa (debit)</td>
-            </tr>
-            
-            <tr>
-                <td>5555555555554444</td>
-                <td>Mastercard</td>
-            </tr>
-            
-            <tr>
-                <td>5200828282828210</td>
-                <td>Mastercard (debit)</td>
-            </tr>
-            
-            <tr>
-                <td>378282246310005</td>
-                <td>American Express</td>
-            </tr>
-            
-            <tr>
-                <td>6011111111111117</td>
-                <td>Discover</td>
-            </tr>
-            
-            <tr>
-                <td>30569309025904</td>
-                <td>Diners Club</td>
-            </tr>
-            
-            <tr>
-                <td>3566002020360505</td>
-                <td>JCB</td>
-            </tr>
-            <tr>
-                <td>6200000000000005</td>
-                <td>UnionPay</td>
-            </tr>
-            
-        </table>
-    </div>
-    <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
-    <script src="vendor/jquery/jquery-3.2.1.min.js"
-        type="text/javascript"></script>
+            <script type="text/javascript" src="https://js.stripe.com/v2/"></script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+
     <script>
 function cardValidation () {
     var valid = true;
@@ -207,7 +147,8 @@ function cardValidation () {
     return valid;
 }
 //set your publishable key
-Stripe.setPublishableKey("<?php echo STRIPE_PUBLISHABLE_KEY; ?>");
+
+var stripe = Stripe.setPublishableKey("pk_test_51H6OkbEBU8rZAzFoaKHPtwpyujEyH1NDjA6sh9xnrSJHDmoBV70LSKmYpvfYEh0PwGJm8xm2soqIwTXVP9nTmYJ000hinn5wVg");
 
 //callback to handle the response from stripe
 function stripeResponseHandler(status, response) {
@@ -233,8 +174,10 @@ function stripePay(e) {
     if(valid == true) {
         $("#submit-btn").hide();
         $( "#loader" ).css("display", "inline-block");
+
         Stripe.createToken({
             number: $('#card-number').val(),
+            name: $('#name').val(),
             cvc: $('#cvc').val(),
             exp_month: $('#month').val(),
             exp_year: $('#year').val()

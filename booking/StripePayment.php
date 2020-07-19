@@ -1,7 +1,8 @@
 <?php
-namespace PhpPot\Service;
+namespace Hcp\Service;
 
-require_once 'vendor/stripe/autoload.php';
+
+require_once '../vendor/autoload.php';
 
 use \Stripe\Stripe;
 use \Stripe\Customer;
@@ -38,6 +39,7 @@ class StripePayment
     {
         $customerDetailsAry = array(
             'email' => $cardDetails['email'],
+            'name' => $cardDetails['name'],
             'source' => $cardDetails['token']
         );
         $customerResult = $this->addCustomer($customerDetailsAry);
@@ -46,9 +48,9 @@ class StripePayment
             'customer' => $customerResult->id,
             'amount' => $cardDetails['amount']*100 ,
             'currency' => $cardDetails['currency_code'],
-            'description' => $cardDetails['item_name'],
+            'description' => $cardDetails['hcp_payment'],
             'metadata' => array(
-                'order_id' => $cardDetails['item_number']
+                'consultation_id' => $cardDetails['hcp_payment_number']
             )
         );
         $result = $charge->create($cardDetailsAry);
