@@ -50,9 +50,20 @@ if(mysqli_num_rows($qs) > 0){
               <img src="../upload/<?php echo $row['certimage'];?>" class="img-fluid" width="200px">
             </div>
             <div class="post-meta">
-              <h1 class="article-title">Dr.<?php echo $row['name']; ?>&nbsp;&nbsp;&nbsp;<a href="../booking/index.php?id=<?php echo $row['id'] ?>"class="btn btn-info">Get Appointment</a></h1> <?php
+            <?php
+              $payment = mysqli_query($conn,"SELECT * FROM `payment_hcp` WHERE `user_id`='$_SESSION[id]'");
+              if(mysqli_num_rows($payment) > 0){
+                  $pay_row = mysqli_fetch_array($payment);
               
-              $_SESSION['docid'] = $row['id']; echo $_SESSION['docid']
+            ?>
+              <h1 class="article-title">Dr.<?php echo $row['name']; ?>&nbsp;&nbsp;&nbsp;<a href="../calling/index.php?id=<?php echo $row['id'] ?>"class="btn btn-info">call</a></h1>                 
+           <?php
+              }else{
+                ?>
+                <a href="../booking/index.php?id=<?php echo $row['id'] ?>"class="btn btn-info">Get Appointment</a></h1>
+                <?php
+              }
+              $_SESSION['docid'] = $row['id'];
               ?>    
             </div>
             <div class="article-content">

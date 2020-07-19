@@ -2,7 +2,6 @@
 session_start();
 include('../db.php');
 use \Hcp\Service\StripePayment;
-echo $_SESSION['id']." ".$_SESSION['docid'];
 require_once "config.php";
 
 if (!empty($_POST["token"])) {
@@ -15,9 +14,9 @@ if (!empty($_POST["token"])) {
     
     $amount = $stripeResponse["amount"] / 100;
     
-    $query = "INSERT INTO `payments`(`user_id`, `doctor_id`, `amount`, `name`, `card_number`, `cvc`) VALUES ('$_SESSION[id]','$_SESSION[docid]','$_POST[amount]','$_POST[name]','$_POST[card_number]','$_POST[cvc]')";
-    if(!mysqli_query($conn, $query)){
-        echo "failed ".$query;
+    $query = "INSERT INTO `payment_hcp`(`user_id`, `doctor_id`, `amount`, `name`, `card_number`, `cvc`) VALUES ('$_SESSION[id]','$_SESSION[docid]','$_POST[amount]','$_POST[name]','$_POST[card_number]','$_POST[cvc]')";
+    if(mysqli_query($conn, $query)){
+       header("location:/doctor/doctor.php?id=$_SESSION[docid]");
     }
     if ($stripeResponse['amount_refunded'] == 0 && empty($stripeResponse['failure_code']) && $stripeResponse['paid'] == 1 && $stripeResponse['captured'] == 1 && $stripeResponse['status'] == 'succeeded') {
         $successMessage = "Stripe payment is completed successfully. The TXN ID is " . $stripeResponse["balance_transaction"];
