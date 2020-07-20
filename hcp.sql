@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.2
+-- version 5.0.2
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 15, 2020 at 11:10 PM
--- Server version: 10.4.10-MariaDB
--- PHP Version: 7.4.3
+-- Generation Time: Jul 20, 2020 at 05:29 PM
+-- Server version: 10.4.11-MariaDB
+-- PHP Version: 7.4.6
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -25,15 +24,23 @@ SET time_zone = "+00:00";
 -- --------------------------------------------------------
 
 --
--- Table structure for table `appointments`
+-- Table structure for table `call_details`
 --
 
-CREATE TABLE `appointments` (
-  `id` int(10) NOT NULL,
-  `docid` int(10) NOT NULL,
-  `uid` int(10) NOT NULL,
-  `time` varchar(150) NOT NULL
+CREATE TABLE `call_details` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `doctor_id` int(11) NOT NULL,
+  `meeting_url` text NOT NULL,
+  `time` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `call_details`
+--
+
+INSERT INTO `call_details` (`id`, `user_id`, `doctor_id`, `meeting_url`, `time`) VALUES
+(13, 9, 9, 'https://zoom.us/s/99497117110?zak=eyJ6bV9za20iOiJ6bV9vMm0iLCJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJjbGllbnQiLCJ1aWQiOiJaS2RYcU5uVlExS1VocUVob1lqV2dRIiwiaXNzIjoid2ViIiwic3R5IjoxMDAsIndjZCI6ImF3MSIsImNsdCI6MCwic3RrIjoiX3dBTFJtb0MyWHVreVoxRk1oSG5zZk9xc3dzMTVpOXNhX05CVzcxTGEtTS5CZ1VnZVZkVmFESlBUamt2YUhoa2QxRlVSMFJJU2xWS2FqZFhjbkowTDJWeFpWbEFPV1ZoWldVeVpEWTNOelk1WkdRNE5tSTROelkyWldWbFpUQmhOV1l4TURWaVpqaGxObU0zTXpoaU1ERXlNMlkxTldRMFkyVmhPR1pqWWpWbU1tUXpaUUFNTTBOQ1FYVnZhVmxUTTNNOUFBTmhkekUiLCJleHAiOjE1OTUxOTE5MzAsImlhdCI6MTU5NTE4NDczMCwiYWlkIjoiZ3c1TTI1UVdUNmFKSHJyLVZXUmhWQSIsImNpZCI6IiJ9.skHTd67oQ-mbW93Nty4AKWY7cBRan64pRqiMXz8br4E', '2020-07-19 23:52:07');
 
 -- --------------------------------------------------------
 
@@ -74,6 +81,70 @@ INSERT INTO `docstatus` (`id`, `status`) VALUES
 (1, 'pending'),
 (2, 'approved'),
 (3, 'blocked');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `front_end_management`
+--
+
+CREATE TABLE `front_end_management` (
+  `id` int(11) NOT NULL,
+  `animated_text` varchar(255) NOT NULL,
+  `about_us` text NOT NULL,
+  `contact_us` text NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payments`
+--
+
+CREATE TABLE `payments` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `doctor_id` int(11) NOT NULL,
+  `amount` int(11) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `payment_hcp`
+--
+
+CREATE TABLE `payment_hcp` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `doctor_id` int(11) NOT NULL,
+  `amount` int(11) DEFAULT NULL,
+  `name` varchar(255) NOT NULL,
+  `card_number` bigint(20) NOT NULL,
+  `cvc` bigint(11) NOT NULL,
+  `payment_time` datetime DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `payment_hcp`
+--
+
+INSERT INTO `payment_hcp` (`id`, `user_id`, `doctor_id`, `amount`, `name`, `card_number`, `cvc`, `payment_time`) VALUES
+(13, 3, 17, 100, 'shah', 4242424242424242, 145, '2020-07-19 18:31:37'),
+(14, 9, 7, 100, 'shah', 4242424242424242, 145, '2020-07-19 23:37:17');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `reviews`
+--
+
+CREATE TABLE `reviews` (
+  `id` int(11) NOT NULL,
+  `user_id` int(11) NOT NULL,
+  `doctor_id` int(11) NOT NULL,
+  `review` float(2,1) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 -- --------------------------------------------------------
 
@@ -137,7 +208,8 @@ INSERT INTO `tbldoctors` (`id`, `name`, `faname`, `email`, `contact`, `address`,
 (14, 'Syed Anwar Ahmed Shah', 'Syed Zia hussain shah', 'us@us.co', '03012134321', 'khi', '123122', 'mbbs', '72041755_2395208774072216_5816196432515825664_n.jpg', '81626197_845759099209945_1286228626525650944_n.jpg', 'karachi', 'pakistan', 'eye specialist', '1630937c3d00b4f4b153599d93469963', 'male', 2),
 (15, 'Syed Anwar Ahmed Shah', 'Syed Zia hussain shah', 'syed13@gmail.com', '03012134321', 'lyari karachi', '123122', 'mbbs', '81626197_845759099209945_1286228626525650944_n.jpg', '72041755_2395208774072216_5816196432515825664_n.jpg', 'karachi', 'pakistan', 'eye specialist', '202cb962ac59075b964b07152d234b70', 'male', 2),
 (16, 'new doctor', 'doctor', 'doct@doct.com', '923133899568', 'shah', '1234cf', 'mbbs', '72041755_2395208774072216_5816196432515825664_n.jpg', '82220525_471175433817246_8914716381086220288_n.jpg', 'khi', 'pak ', 'y', '1630937c3d00b4f4b153599d93469963', 'male', 2),
-(17, 'dr tester tester', 'senior tester', 'sn.tester@gmail.com', '03018703123', 'address of the doctor is valid', '2233454', 'MBBS', 'as1.PNG', 'ld6.PNG', 'khi', 'pak', 'eye', 'cf43487cc21cd8ec0154bc3d4e5d3f23', 'male', 2);
+(17, 'dr tester tester', 'senior tester', 'sn.tester@gmail.com', '03018703123', 'address of the doctor is valid', '2233454', 'MBBS', 'as1.PNG', 'ld6.PNG', 'khi', 'pak', 'eye', 'cf43487cc21cd8ec0154bc3d4e5d3f23', 'male', 2),
+(18, 'test testing', 'greattesting', 'testing@testing', '03031233212', 'khi', '123445', 'mbbs', 'seeds.PNG', 'sendgridinputs.PNG', 'khi', 'pak', 'eye', 'cf43487cc21cd8ec0154bc3d4e5d3f23', 'male', 2);
 
 -- --------------------------------------------------------
 
@@ -166,16 +238,17 @@ INSERT INTO `tblusers` (`id`, `name`, `email`, `password`, `contact`, `image`, `
 (5, 'test user2', 'user2@email.com', '1630937c3d00b4f4b153599d93469963', 123, '82220525_471175433817246_8914716381086220288_n.jpg', 'Male', 2),
 (6, 'usertest1 test', 'ut@email.com', '1630937c3d00b4f4b153599d93469963', 2147483647, '81596780_585958348912912_8862971486982373376_n.jpg', 'Male', 2),
 (7, 'danish Iqbal', 'danish@gmail.com', '202cb962ac59075b964b07152d234b70', 2147483647, '72041755_2395208774072216_5816196432515825664_n (1).jpg', 'Male', 2),
-(8, 'test last', 'last@email.com', 'cf43487cc21cd8ec0154bc3d4e5d3f23', 2147483647, 'cloud.PNG', 'Male', 2);
+(8, 'test last', 'last@email.com', 'cf43487cc21cd8ec0154bc3d4e5d3f23', 2147483647, 'cloud.PNG', 'Male', 2),
+(9, 'test user final', 'full@final', 'cf43487cc21cd8ec0154bc3d4e5d3f23', 2147483647, 'Capture3.PNG', 'Male', 2);
 
 --
 -- Indexes for dumped tables
 --
 
 --
--- Indexes for table `appointments`
+-- Indexes for table `call_details`
 --
-ALTER TABLE `appointments`
+ALTER TABLE `call_details`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -188,6 +261,30 @@ ALTER TABLE `docavalibility`
 -- Indexes for table `docstatus`
 --
 ALTER TABLE `docstatus`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `front_end_management`
+--
+ALTER TABLE `front_end_management`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `payments`
+--
+ALTER TABLE `payments`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `payment_hcp`
+--
+ALTER TABLE `payment_hcp`
+  ADD PRIMARY KEY (`id`);
+
+--
+-- Indexes for table `reviews`
+--
+ALTER TABLE `reviews`
   ADD PRIMARY KEY (`id`);
 
 --
@@ -215,10 +312,10 @@ ALTER TABLE `tblusers`
 --
 
 --
--- AUTO_INCREMENT for table `appointments`
+-- AUTO_INCREMENT for table `call_details`
 --
-ALTER TABLE `appointments`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `call_details`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `docavalibility`
@@ -233,6 +330,30 @@ ALTER TABLE `docstatus`
   MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
+-- AUTO_INCREMENT for table `front_end_management`
+--
+ALTER TABLE `front_end_management`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `payments`
+--
+ALTER TABLE `payments`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `payment_hcp`
+--
+ALTER TABLE `payment_hcp`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `reviews`
+--
+ALTER TABLE `reviews`
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `roles`
 --
 ALTER TABLE `roles`
@@ -242,13 +363,13 @@ ALTER TABLE `roles`
 -- AUTO_INCREMENT for table `tbldoctors`
 --
 ALTER TABLE `tbldoctors`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=18;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=19;
 
 --
 -- AUTO_INCREMENT for table `tblusers`
 --
 ALTER TABLE `tblusers`
-  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
