@@ -55,7 +55,10 @@ include('../db.php');
               <a class="nav-link js-scroll active" href="#home">Home</a>
             </li>
             <li class="nav-item">
+          <?php if(isset($_SESSION['specialization'])){
+            ?>  
               <a class="nav-link js-scroll" href="doctordashboard.php" style="color:black;">Dashboard</a>
+          <?php } ?>
             </li>
           
           </ul>
