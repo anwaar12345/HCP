@@ -7,11 +7,18 @@ include('header.php');
      
      
 
-     $qs = mysqli_query($conn,"SELECT * FROM `tbldoctors` WHERE `email`='$_SESSION[email]' and `name`='$_SESSION[name]' and `specialization`='$_SESSION[specialization]'");
+     $qs = mysqli_query($conn,"SELECT * FROM `tbldoctors` WHERE `id`='$_SESSION[id]'");
      if(mysqli_num_rows($qs) > 0){
          $row = mysqli_fetch_array($qs);
      }
-    
+
+     if(isset($_POST['submit'])){
+     $qu = mysqli_query($conn,"UPDATE `tbldoctors` SET `name`='$_POST[name]',`faname`='$_POST[faname]',`email`='$_POST[email]',`contact`='$_POST[contact]',`password`= md5('$_POST[password]') WHERE id='$_SESSION[id]'");
+     if($qu){
+      echo "<script>alert('Profile Updated SuccessFully');</script>";  
+     }
+   
+     }
 
     ?>
     <div id="page-wrapper">
@@ -27,8 +34,12 @@ include('header.php');
                     <!-- Form -->
                         <form  class="form" action="" method="post" enctype="multipart/form-data">
                             <div class="form-group">
-                                <label for="name" class="text-info">First Name:</label><br>
-                                <input type="text" name="firstname" class="form-control" value="<?php echo $row['name']; ?>"> 
+                                <label for="name" class="text-info">Name:</label><br>
+                                <input type="text" name="name" class="form-control" value="<?php echo $row['name']; ?>"> 
+                            </div>
+                            <div class="form-group">
+                                <label for="name" class="text-info">Father Name:</label><br>
+                                <input type="text" name="faname" class="form-control" value="<?php echo $row['faname']; ?>"> 
                             </div>
                             <div class="form-group">
                                 <label for="email" class="text-info">Email:</label><br>
@@ -41,17 +52,6 @@ include('header.php');
                             <div class="form-group">
                                 <label for="contact" class="text-info">Contact:</label><br>
                                 <input type="text" name="contact"  class="form-control" value="<?php echo $row['contact']; ?>">
-                            </div>
-                            
-                            <div class="form-group">
-                                <label for="profile" class="text-info">Profile Picture:</label><br>
-                                <?php if($row['certimage']!=""){   ?>
-                                <?php echo "<img src='../upload/$row[certimage]' height='200px' width='200px'> <br> $row[certimage]";}?>
-                                <input type="file" name="image"  class="form-control" > <p style="color:red;">
-                            </div>
-                            <div class="form-group">
-                                <label for="gender" class="text-info">Gender:</label><br>
-                                <input type="radio" name="gender" value="Male" Required <?php if($row['gender']=="Male"){ echo "checked"; } ?>> Male <input type="radio" name="gender" value="Female" <?php if($row['gender']=="Female"){ echo "checked"; } ?>> Female 
                             </div>
                             <div class="form-group" style="margin-top:30px;">
                                 <input type="submit" name="submit" class="btn btn-info btn-md" value="submit">
