@@ -42,6 +42,20 @@ include('header.php');
     if(mysqli_num_rows($q) > 0){
         $row = mysqli_fetch_array($q);
         
+    }else{
+        $row['time'] = '';
+        $row['days'] = '';
+        
+        $_POST['time'];
+        $_POST['days'];
+        
+        $q = mysqli_query($conn,"INSERT INTO `docavalibility`(`docid`, `time`, `days`) VALUES ('$_SESSION[id]','$_POST[time]','$_POST[days]')");
+        if($q){
+            $message = "Availabiltiy Time Added Successfully";
+        }else{
+            $message = "Operation Failed";
+        }
+
     }
     ?>
                             

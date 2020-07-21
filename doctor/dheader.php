@@ -1,6 +1,7 @@
 <?php
 session_start();
-if($_GET['id']){
+error_reporting(0);
+if(isset($_GET['id'])){
   
 }else{
   if($_SESSION['name'] == "" && $_SESSION['email'] == ""){

@@ -96,7 +96,14 @@ $z = $zoom_meeting->createAMeeting(
 print_r($z);
 $q = mysqli_query($conn, "INSERT INTO `call_details`( `user_id`, `doctor_id`, `meeting_url`) VALUES ('$_SESSION[id]','$_SESSION[docid]','$z')");
 if($q){
-    echo "<script>alert('Call scheduled now');window.location.href='../doctor/doctor.php?id=$_SESSION[docid]';</script>";
+    if($_SESSION['role'] == 1){
+        echo "<script>alert('Call scheduled now');window.location.href='../doctor/doctor.php?id=$_SESSION[docid]';</script>";
+    }elseif($_SESSION['role'] == 2){
+        echo "<script>alert('Call scheduled now');window.location.href='../user/viewappointments.php';</script>";
+    }else{
+        echo "<script>alert('Call scheduled now');window.location.href='../user/viewappointments.php';</script>";
+    }
+    
 }else{
     echo "failed";
 }
