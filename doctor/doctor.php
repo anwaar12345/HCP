@@ -17,7 +17,9 @@ if(mysqli_num_rows($qs) > 0){
 }
 if(isset($_POST['submit'])){
   $datetime = str_replace('T',' ',$_POST['datetime']);
-  $_SESSION['time'] = substr($datetime, 0, -6);
+  $_SESSION['date'] = substr($datetime, 0, -6);
+  $_SESSION['time'] = substr($datetime, 10, 11);
+  echo $_SESSION['date']." time ".$_SESSION['time'];
 }
 ?>
     <!--/ Nav End /-->
@@ -61,6 +63,11 @@ if(isset($_POST['submit'])){
               
             ?>
               <h1 class="article-title">Dr.<?php echo $row['name']; ?>&nbsp;&nbsp;&nbsp;<button class="btn btn-info"><a href="../calling/index.php?id=<?php echo $row['id'] ?>" style="text-decoration: none !important;">call</a></button></h1>                 
+              <form action="" method="post">
+              <label for="birthdaytime">Kindly select Date and time:</label>
+              <input type="datetime-local" id="date" name="datetime">
+              <input type="submit" value="select time" name="submit">
+              </form>
            <?php
               }else{
                 ?>

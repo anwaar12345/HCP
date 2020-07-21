@@ -88,13 +88,13 @@ $zoom_meeting = new Zoom_Api();
 try{
 $z = $zoom_meeting->createAMeeting(
  array(
-  'start_date'=>date("Y-m-d h:i:s", strtotime('tomorrow')),
+  'start_date'=>date("Y-m-d h:i:s", strtotime($_SESSION['date'].' '.$_SESSION['time'])),
   'meetingTopic'=>'hcp',
-  'timezone'=>'Asia/karachi'
+  'timezone'=>'Asia/Tashkent'
  )
 );
-print_r($z);
-$q = mysqli_query($conn, "INSERT INTO `call_details`( `user_id`, `doctor_id`, `meeting_url`) VALUES ('$_SESSION[id]','$_SESSION[docid]','$z')");
+
+$q = mysqli_query($conn, "INSERT INTO `call_details`( `user_id`, `doctor_id`, `meeting_url`,`time`) VALUES ('$_SESSION[id]','$_SESSION[docid]','$z','$_SESSION[date] $_SESSION[time]')");
 if($q){
     if($_SESSION['role'] == 1){
         echo "<script>alert('Call scheduled now');window.location.href='../doctor/doctor.php?id=$_SESSION[docid]';</script>";
