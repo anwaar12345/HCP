@@ -15,6 +15,10 @@ if(mysqli_num_rows($qs) > 0){
   }
   
 }
+if(isset($_POST['submit'])){
+  $datetime = str_replace('T',' ',$_POST['datetime']);
+  $_SESSION['time'] = substr($datetime, 0, -6);
+}
 ?>
     <!--/ Nav End /-->
 
@@ -56,13 +60,16 @@ if(mysqli_num_rows($qs) > 0){
                   $pay_row = mysqli_fetch_array($payment);
               
             ?>
-              <h1 class="article-title">Dr.<?php echo $row['name']; ?>&nbsp;&nbsp;&nbsp;<button class="btn btn-info"><a href="../calling/index.php?id=<?php echo $row['id'] ?>" style="    text-decoration: none !important;">call</a></button></h1>                 
+              <h1 class="article-title">Dr.<?php echo $row['name']; ?>&nbsp;&nbsp;&nbsp;<button class="btn btn-info"><a href="../calling/index.php?id=<?php echo $row['id'] ?>" style="text-decoration: none !important;">call</a></button></h1>                 
            <?php
-              }elseif($_SESSION['id']){
-
               }else{
                 ?>
                 <a href="../booking/index.php?id=<?php echo $row['id'] ?>"class="btn btn-info">Get Appointment</a></h1>
+                <form action="" method="post">
+                <label for="birthdaytime">Kindly select Date and time:</label>
+                <input type="datetime-local" id="date" name="datetime">
+                <input type="submit" value="select time" name="submit">
+                </form>
                 <?php
               }
               $_SESSION['docid'] = $row['id'];
@@ -159,9 +166,25 @@ if(mysqli_num_rows($qs) > 0){
   <script src="../lib/typed/typed.min.js"></script>
   <!-- Contact Form JavaScript File -->
   <script src="../contactform/contactform.js"></script>
-
+  
   <!-- Template Main Javascript File -->
   <script src="../js/main.js"></script>
+  <script type='text/javascript'>
+$(function(){
 
+    $("#date").on('change', function () {
+        var date = Date.parse($(this).val());
+        if (date < Date.now()) {
+            alert('Selected date must be greater than today date');
+            $(this).val('');
+
+        }
+    });  
+})    
+
+    
+</script>
+
+</body>
 </body>
 </html>
