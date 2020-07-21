@@ -14,7 +14,7 @@ include('header.php');
 
      if(isset($_POST['submit'])){
     $password = md5(mysqli_real_escape_string($conn, $_POST['password']));    
-     $qu = mysqli_query($conn,"UPDATE `tbldoctors` SET `name`='$_POST[name]',`faname`='$_POST[faname]',`email`='$_POST[email]',`contact`='$_POST[contact]',`password`= '$password' WHERE id='$_SESSION[id]'");
+     $qu = mysqli_query($conn,"UPDATE `tbldoctors` SET `name`='$_POST[name]',`faname`='$_POST[faname]',`contact`='$_POST[contact]',`password`= '$password' WHERE id='$_SESSION[id]'");
      if($qu){
       echo "<script>alert('Profile Updated SuccessFully');</script>";  
      }
@@ -41,10 +41,6 @@ include('header.php');
                             <div class="form-group">
                                 <label for="name" class="text-info">Father Name:</label><br>
                                 <input type="text" name="faname" class="form-control" value="<?php echo $row['faname']; ?>"> 
-                            </div>
-                            <div class="form-group">
-                                <label for="email" class="text-info">Email:</label><br>
-                                <input type="email" name="email" class="form-control" value="<?php echo $row['email']; ?>">
                             </div>
                             <div class="form-group">
                                 <label for="password" class="text-info">Password:</label><br>
