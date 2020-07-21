@@ -1,9 +1,17 @@
 <?php
 include('dheader.php');
-
-$qs = mysqli_query($conn,"SELECT * FROM `tblusers` WHERE `email`='$_SESSION[email]' and `name`='$_SESSION[name]'");
-if(mysqli_num_rows($qs) > 0){
-    $row = mysqli_fetch_array($qs);
+if(isset($_GET['id'])){
+  $qs = mysqli_query($conn,"SELECT * FROM `tblusers` WHERE id='$_GET[id]'");
+  if(mysqli_num_rows($qs) > 0){
+      $row = mysqli_fetch_array($qs);
+  }
+    
+}else{
+  $qs = mysqli_query($conn,"SELECT * FROM `tblusers` WHERE `email`='$_SESSION[email]' and `name`='$_SESSION[name]'");
+  if(mysqli_num_rows($qs) > 0){
+      $row = mysqli_fetch_array($qs);
+  }
+  
 }
 ?>
     <!--/ Nav End /-->
