@@ -50,6 +50,8 @@ include('../db.php');
                 <ul class="dropdown-menu">
                     
                     <li class="divider"></li>
+                    <li><a href="profile.php"><i class="fa fa-fw fa-profile"></i>Manage Profile</a></li>
+                    <li class="divider"></li>
                     <li><a href="../logout.php"><i class="fa fa-fw fa-power-off"></i> Logout</a></li>
                 </ul>
             </li>
