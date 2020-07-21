@@ -13,7 +13,8 @@ include('header.php');
      }
 
      if(isset($_POST['submit'])){
-     $qu = mysqli_query($conn,"UPDATE `tbldoctors` SET `name`='$_POST[name]',`faname`='$_POST[faname]',`email`='$_POST[email]',`contact`='$_POST[contact]',`password`= md5('$_POST[password]') WHERE id='$_SESSION[id]'");
+    $password = md5(mysqli_real_escape_string($conn, $_POST['password']));    
+     $qu = mysqli_query($conn,"UPDATE `tbldoctors` SET `name`='$_POST[name]',`faname`='$_POST[faname]',`email`='$_POST[email]',`contact`='$_POST[contact]',`password`= '$password' WHERE id='$_SESSION[id]'");
      if($qu){
       echo "<script>alert('Profile Updated SuccessFully');</script>";  
      }
