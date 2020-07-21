@@ -48,7 +48,7 @@ if(isset($_GET['id'])){
               <img src="../upload/<?php echo $row['image'];?>" class="img-fluid" width="200px">
             </div>
             <div class="post-meta">
-              <h1 class="article-title">Dr <?php echo $row['name']; ?>&nbsp;&nbsp;&nbsp;<input type="submit" value="Message" class="btn btn-info"></h1>     
+              <h1 class="article-title"><?php echo $row['name']; ?></h1>     
             </div>
             <div class="article-content">
               <p>Hi i am <?php echo $row['name']; ?> from pakistan ..... 
@@ -66,11 +66,22 @@ if(isset($_GET['id'])){
             <div class="sidebar-content">
               <ul>
                 <li>
-                  <a href="#" style="pointer-events: none;">Dr Danish Iqbal</a>
+                <?php
+                 $q1 = mysqli_query($conn,"SELECT call_details.user_id,call_details.time,tbldoctors.name FROM call_details INNER JOIN tbldoctors ON call_details.doctor_id = tbldoctors.id where user_id ='$_SESSION[id]'");
+                 if(mysqli_num_rows($q1)>0){
+                 
+                 $row = mysqli_fetch_array($q1);
+                 
+                 
+                 
+                 ?>
+                
+                  <a href="#" style="pointer-events: none;"><?php echo "Dr ".$row['name'] ?> </a>
                 </li>
                 <li>
-                <a href="#"><?php echo date('D M Y'); ?></a>
+                <a href="#"><?php echo $row['time'] ?></a>
                 </li>
+              <?php } ?>
               </ul>
             </div>
           </div>

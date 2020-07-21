@@ -16,7 +16,7 @@ include('../db.php');
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>| Admin |</title>
+    <title>| HCP |</title>
     <link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
     <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
     <script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.0/js/bootstrap.min.js"></script>
@@ -48,7 +48,8 @@ include('../db.php');
               <li class="dropdown" >
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="font-size:20px;"><?php echo $row['name'];?> <b class="fa fa-angle-down"></b></a>
                 <ul class="dropdown-menu">
-                    
+                <li class="divider"></li>
+                    <li><a href="profile.php"><i class="fa fa-fw fa-profile"></i>Manage Profile</a></li>
                     <li class="divider"></li>
                     <li><a href="../logout.php"><i class="fa fa-fw fa-power-off"></i> Logout</a></li>
                 </ul>
