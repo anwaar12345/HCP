@@ -56,7 +56,7 @@ if(mysqli_num_rows($qs) > 0){
                   $pay_row = mysqli_fetch_array($payment);
               
             ?>
-              <h1 class="article-title">Dr.<?php echo $row['name']; ?>&nbsp;&nbsp;&nbsp;<a href="../calling/index.php?id=<?php echo $row['id'] ?>"class="btn btn-info">call</a></h1>                 
+              <h1 class="article-title">Dr.<?php echo $row['name']; ?>&nbsp;&nbsp;&nbsp;<button class="btn btn-info"><a href="../calling/index.php?id=<?php echo $row['id'] ?>" style="    text-decoration: none !important;">call</a></button></h1>                 
            <?php
               }else{
                 ?>
