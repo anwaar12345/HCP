@@ -3,9 +3,7 @@
                 <li>
                     <a href="#" data-toggle="collapse" data-target="#submenu-1" style="background-color:lightseagreen;color:red;"><i class="fa fa-fw fa-user"></i> Control Users <i class="fa fa-fw fa-angle-down pull-right"></i></a>
                     <ul id="submenu-1" class="collapse" style="background-color:lightseagreen;">
-                        <li ><a href="#" style="color:black;"><i class="fa fa-angle-double-right"></i> SUBMENU 1.1</a></li>
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> SUBMENU 1.2</a></li>
-                        <li><a href="#"><i class="fa fa-angle-double-right"></i> SUBMENU 1.3</a></li>
+                        <li ><a href="users.php" style="color:black;"><i class="fa fa-angle-double-right"></i>Users</a></li>
                     </ul>
                 </li>
                 <li>
