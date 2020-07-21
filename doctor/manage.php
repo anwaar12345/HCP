@@ -48,7 +48,7 @@ include('header.php');
         
         $_POST['time'];
         $_POST['days'];
-        
+        $message = "";       
         $q = mysqli_query($conn,"INSERT INTO `docavalibility`(`docid`, `time`, `days`) VALUES ('$_SESSION[id]','$_POST[time]','$_POST[days]')");
         if($q){
             $message = "Availabiltiy Time Added Successfully";
