@@ -70,6 +70,7 @@ if(isset($_POST['submit'])){
               </form>
            <?php
               }else{
+                if($_SESSION['role']== 1 || $_SESSION['role'] == 2){
                 ?>
                 <a href="../booking/index.php?id=<?php echo $row['id'] ?>"class="btn btn-info">Get Appointment</a></h1>
                 <form action="" method="post">
@@ -78,7 +79,7 @@ if(isset($_POST['submit'])){
                 <input type="submit" value="select time" name="submit">
                 </form>
                 <?php
-              }
+              }}
               $_SESSION['docid'] = $row['id'];
               ?>    
             </div>

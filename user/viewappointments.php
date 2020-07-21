@@ -22,10 +22,6 @@ include('header.php');
   $q1 = mysqli_query($conn,"SELECT call_details.meeting_url,call_details.id,call_details.time,call_details.doctor_id,tbldoctors.name,call_details.status FROM call_details INNER JOIN tbldoctors ON call_details.doctor_id = tbldoctors.id where user_id ='$_SESSION[id]'");
   if(mysqli_num_rows($q1)>0){
   
-  $row = mysqli_fetch_array($q1);
-     
-  
-  
   ?>
     <tr>
       <th scope="col">Appointment no#</th>
@@ -35,6 +31,11 @@ include('header.php');
     </tr>
   </thead>
   <tbody>
+  <?php
+  
+  while($row = mysqli_fetch_array($q1)){
+
+  ?>
     <tr>
     <?php if($row['status'] == 0){ ?>
       <th scope="row"><?php echo $row['id']; ?></th>
@@ -47,7 +48,7 @@ include('header.php');
     <th scope="row">no data</th>
     </tr>
     <?php } ?>
-  <?php }else{
+  <?php }}else{
 ?>    
   <tr>
      <td> No data</td>
