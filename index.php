@@ -170,7 +170,13 @@ $.ajax({
         <div class="container">
           <!--<p class="display-6 color-d">Hello, world!</p>-->
           <h1 class="intro-title mb-4">HCP</h1>
-          <p class="intro-subtitle"><span class="text-slider-items">We Health Consultancy Portal Aims,to provide an Online Platform ....!,To Find a Doctor For Your Queries,and Get an Appointment and Diagnose Your Problems Online, Search your Doctor....!</span><strong class="text-slider"></strong></p>
+          <?php   
+          $qs = mysqli_query($conn,"SELECT * FROM `front_end_management`");
+          if(mysqli_num_rows($qs) > 0){
+          $row1 = mysqli_fetch_array($qs);
+          }  
+          ?>
+          <p class="intro-subtitle"><span class="text-slider-items"><?php echo $row1['animated_text']; ?></span><strong class="text-slider"></strong></p>
 
 
 
@@ -221,7 +227,7 @@ while($row = mysqli_fetch_array($q)){
                     </h5>
                   </div>
                   <p class="lead">
-                    We are Health Consultancy Portal our Aim to Provide Best Platform For User to Book Consultancy Services and Online Appointments From Best Doctors Available and for Doctor To Provide their services and Earn Money. 
+                   <?php echo $row1['about_us']; ?>
                   </p>
                 </div>
               </div>
