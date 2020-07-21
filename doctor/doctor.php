@@ -91,7 +91,7 @@ if(isset($_POST['submit'])){
           </div>
           <div class="box-comments">
             <div class="title-box-2">
-              <h4 class="title-comments title-left">Reviews (4)</h4>
+              <h4 class="title-comments title-left">Availability</h4>
             </div>
             <ul class="list-comments">
               <li>
@@ -122,7 +122,7 @@ if(isset($_POST['submit'])){
           </div>
         </div>
         <div class="col-md-4">
-          
+
           
                <div class="widget-sidebar widget-tags">
             <h5 class="sidebar-title">Degrees</h5>
@@ -135,6 +135,29 @@ if(isset($_POST['submit'])){
             </div>
           </div>
         </div>
+        <!----->
+        <div class="col-md-4">
+
+          
+<div class="widget-sidebar widget-tags">
+<h5 class="sidebar-title">Availability</h5>
+<div class="sidebar-content">
+<ul>
+<?php
+              $ava = mysqli_query($conn,"SELECT * FROM `docavalibility` WHERE `docid`='$_SESSION[docid]'");
+              if(mysqli_num_rows($ava) > 0){
+                  $rowa = mysqli_fetch_array($ava);
+                 
+            ?>
+  
+ <li>
+ <a href="#" style="pointer-events: none;"><?php echo $rowa['time']." Days ".$rowa['days']; ?></a>
+ </li>
+              <?php }?>
+</ul>
+</div>
+</div>
+</div>
       </div>
     </div>
   </section>
