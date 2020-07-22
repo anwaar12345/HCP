@@ -28,6 +28,7 @@ include('header.php');
       <th scope="col">Doctor Name</th>
       <th scope="col">Time</th>
       <th scope="col">Meeting url</th>
+      <th scope="col">Action</th>
     </tr>
   </thead>
   <tbody>
@@ -42,6 +43,7 @@ include('header.php');
       <td><a href="../doctor/doctor.php?id=<?php echo $row['doctor_id']; ?>"><?php echo $row['name']; ?></a></td>
       <td><?php echo $row['time']; ?></td>
       <td style="overflow:hidden"> <a href="<?php echo $row['meeting_url']; ?>" target="_blank">Call Url</a></td>
+      <td><a href="delete.php?id=<?php echo $row['id']; ?>" class="btn btn-danger">Cancel</a></td>
     </tr>
     <?php }elseif($row['status']==1){ ?>
     <tr>
