@@ -43,12 +43,42 @@ include('header.php');
       <td><?php echo $row['time']; ?></td>
       <td style="overflow:hidden"> <a href="<?php echo $row['meeting_url']; ?>" target="_blank">Call Url</a></td>
     </tr>
-    <?php }else{ ?>
+    <?php }elseif($row['status']==1){ ?>
     <tr>
-    <th scope="row">no data</th>
+    <div class="hidden">
+    <h1 class="lead">Kindly Fill Review</h1>
+    <form  class="form-horizontal" method="post" action="#">
+                                    
+                                    <div style="margin-bottom: 25px" class="input-group">
+                                                <span class="input-group-addon"><i class="glyphicon glyphicon-time"></i></span>
+                                                <input  type="text" class="form-control" name="review">                                        
+                                            </div>
+                                        
+        
+                                        <div style="margin-top:10px" class="form-group">
+                                            <!-- Button -->
+        
+                                            <div class="col-sm-12 controls">
+                                            <input type="submit" class="btn btn-success" value="Fill Review" name="submit">
+        
+                                            </div>
+                                        </div>
+        
+                            </form>     
+                            </div>
+  <?php
+       
+   ?>     
     </tr>
-    <?php } ?>
-  <?php }}else{
+    <?php 
+  
+  } ?>
+  <?php  if(isset($_POST['submit'])){
+   $review = mysqli_query($conn,"INSERT INTO `reviews`(`user_id`,`doctor_id`, `review`) VALUES ($_SESSION[id],$row[doctor_id],'$_POST[review]')");
+    if($review){
+      echo "<p>Done</p>";
+    }
+  }}}else{
 ?>    
   <tr>
      <td> No data</td>
@@ -76,6 +106,14 @@ $(function(){
     $('.side-nav .collapse').on("show.bs.collapse", function() {                        
         $(this).prev().find(".fa").eq(1).removeClass("fa-angle-down").addClass("fa-angle-right");        
     });
+
+    if($('p').text = "done"){
+     
+      $('.hidden').hide();
+      $('p').hide();
+    }
+
+
 })    
     
 </script>

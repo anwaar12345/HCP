@@ -19,7 +19,7 @@ include('header.php');
   <thead>
   <?php
 
-  $q1 = mysqli_query($conn,"SELECT call_details.meeting_url,call_details.time,tbldoctors.name,call_details.status FROM call_details INNER JOIN tbldoctors ON call_details.doctor_id = tbldoctors.id where user_id ='$_SESSION[id]'");
+  $q1 = mysqli_query($conn,"SELECT call_details.id,call_details.meeting_url,call_details.time,tbldoctors.name,call_details.status FROM call_details INNER JOIN tbldoctors ON call_details.doctor_id = tbldoctors.id where user_id ='$_SESSION[id]'");
   if(mysqli_num_rows($q1)>0){
   
   $row = mysqli_fetch_array($q1);
